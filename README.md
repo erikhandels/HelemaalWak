@@ -2,7 +2,7 @@
 
 ## Wat is het?
 
-HelemaalWak is een wekkerapp die gericht is op mensen die moeite hebben met opstaan en mensen die dusdanig die door middel van snoozen terug in hun remslaap terecht komen waardoor ze zich s'ochtends matig voelen. De app is gebouwd met Cordova Phonegap en zou daarom kunnen werken voor alle platformen. Echter is hij momenteel alleen geoptimaliseerd voor Android.
+HelemaalWak is een wekkerapp die gericht is op mensen die moeite hebben met opstaan en mensen die door middel van snoozen terug in hun remslaap terecht komen waardoor ze zich s'ochtends matig voelen. De app is gebouwd met Cordova Phonegap en zou daarom kunnen werken voor alle platformen. Echter is hij momenteel alleen geoptimaliseerd voor Android.
 
 ## Wat kan het allemaal?
 
