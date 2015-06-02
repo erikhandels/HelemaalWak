@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=320, user-scalable=no" />
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' https://code.jquery.com 'unsafe-inline' 'unsafe-eval'">
+<title>HelemaalWek</title>
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+</head>
+
+<body>
+
+  <div id="appcontain">
+
+  <header class="top-bar row">
+
+  <div class="col s12">
+
+  <p class="appnaam">Helemaalwak <a class="informatie" href="#"><i class="fa fa-info-circle"></i></a></p>
+
+  </div>
+
+  </header>
+
+  <!--<p><a href="#" onclick="showConfirm(); return false;">Show Confirm</a></p>-->
+    <ul class="tabs">
+    <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
+    <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
+  </ul>
+  <div id="wekkerview" class="col s12">
+    <div style="margin-top:30px;" class="row wekkeritem">
+      <div class="col s12 center-align">
+        <a id="wekkertoevoegknop" class="btn-floating btn-large waves-effect waves-light blue darken-2"><i class="mdi-action-alarm-add small"></i></a>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div id="wekker1" onclick="wekkerinstellen();" style="margin-top:30px;" class="row">
+      <div class="col s3">
+        <i class="mdi-action-alarm small left-align blue-text text-darken-2"></i>
+      </div>
+      <div class="col s6">
+        <b id="ingesteldetijd" style="font-size:20px; border:none;">00:00</b>
+      </div>
+      <div class="col s3">
+        <!-- Switch -->
+        <div style="margin:8px 0 0 0" class="switch right-align">
+          <label>
+            <input id="togglewekker" type="checkbox">
+            <span class="lever"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div id="statview" class="col s12">
+
+    <div class="row">
+
+      <div class="col s12">
+      <p class="leesbaar">Jij voelt je s'ochtends het beste na 2 x snoozen (10 minuten).</p>
+	  </div>
+      <div class="col s12">
+      <div class="col s6">
+      <i class='fa fa-smile-o'></i><br>
+      <span class="statgetal">15</span>
+      </div>
+      <div class="col s6">
+      <i class='fa fa-meh-o'></i><br>
+      <span class="statgetal">8</span>
+      </div>
+      <div class="col s6">
+      <i class='fa fa-frown-o'></i><br>
+      <span class="statgetal">4</span>
+      </div>
+      <div class="col s6">
+      <i class='fa fa-remove'></i><br>
+      <span class="statgetal">2</span>
+      </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="alarmview">
+    <div class="row">
+      <div class="col s12 center-align">
+        <div id="tagContents">
+          <div class="hidden">
+            <p class="uppercase center fase">Fase 1</p>
+            <i style="font-size:220px;" class="shake mdi-action-alarm large blue-text text-lighten-5"></i>
+            <p class="alarmtijd center-align">Het is nu</p>
+            <a style="width:100%;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>
+          </div>
+        </div>
+        <script id="non-ndef-template" type="text/x-handlebars-template">
+         <p class="uppercase center fase">Goedemorgen!</p>
+          <p class="alarmtijd center-align"></p>
+        </script>
+        <script id="tag-template" type="text/x-handlebars-template">
+
+		 <p class="uppercase center fase">Goedemorgen!</p>
+          <p class="alarmtijd center-align"></p>
+
+		  <div class="divider"></div>
+
+          <p class="groterep">hoe voelt u zich?</p>
+
+          <div id="svgplek">
+
+		  <div class="row">
+
+		  <div class="col s4"><i class="smiley fa fa-smile-o" value="3" id="goed" onclick="naarstatistieken();"></i></div>
+		  <div class="col s4"><i class="smiley fa fa-meh-o" value="2" id="matig" onclick="naarstatistieken();"></i></div>
+		  <div class="col s4"><i class="smiley fa fa-frown-o" value="3" id="slecht" onclick="naarstatistieken();"></i></div>
+
+		  </div>
+
+		  </div>
+        </script>
+      </div>
+    </div>
+  </div>
+
+</div><!-- einde appcontain -->
+
+<div class="slider fullscreen">
+  <ul class="slides">
+
+    <li style="background-color:#1976d2;">
+      <img src=" "/>
+      <div class="caption center-align">
+        <h3>Welkom bij</h3>
+        <img class="helemaalweklogo" src="img/logo.png" width="100"/>
+
+      </div>
+    </li>
+
+    <li style="background-color:#1565c0;">
+      <div class="caption center-align">
+        <h3>HelemaalWak ondersteunt u met:</h3>
+        <p class="usp">- Tijdig opstaan</p>
+        <p class="usp">- Prettig opstaan</p>
+        <p class="usp">- Gegarandeerd opstaan</p>
+        <p class="usp">- Gepersonaliseerd advies</p>
+        </div>
+    </li>
+
+    <li style="background-color:#1565c0;">
+      <div class="caption center-align">
+        <h3>Hoe werkt het?</h3>
+        <p class="proces">1. Stel de wekker in</p>
+        <p class="proces">2. Sta op in fases</p>
+        <p class="proces">3. Scan de nfc tag of onderga de consequenties</p>
+        <p class="proces">4. Geef aan hoe jij je voelt</p>
+        <p class="proces">5. De wekker leert van jou</p>
+
+        <button id="buttonuituitleg" style="width:100%; margin-top:50px;" class="btn-large blue lighten-5" onclick="selectcontact();">IK SNAP HET</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<div style="display:none;" id="selectcontact">
+  <header class="top-bar row">
+
+  <div class="col s12">
+    <p class="appnaam">Contact kiezen <a class="informatie" href="#"><i class="fa fa-info-circle"></i></a></p>
+    </div>
+    </header>
+
+  <div class="row">
+    <div class="col s12">
+      <p class="flow-text">Selecteer de persoon die op de hoogte word gesteld wanneer jij niet op tijd opstaat:</p>
+      <input type="text" id="contactinput" placeholder="kies een contactpersoon">
+        <ul class="collection">
+          <div class="contacten" style="height:315px;overflow:scroll;">
+          </div>
+        </ul>
+      <button id="nummeropslaan" style="width:100%;" class="btn-large blue darken-5" onclick="slacontactop();">opslaan</button>
+    </div>
+  </div>
+</div>
+
+
+<div id="wekkerinstelview">
+<div class="row np">
+    <div class="col s6 np">
+      <button id="annuleren" style="width:100%; border-right:1px solid #fff;" class="btn-large blue darken-5" onclick="$('#wekkerinstelview').hide();">annuleren</button>
+    </div>
+    <div class="col s6 np">
+      <button id="tijdopslaan" style="width:100%;" class="btn-large blue darken-5" onclick="tijdopslaan(); $('#wekkerinstelview').hide();">opslaan</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col s12">
+      <input type="text" placeholder="Wekkernaam">
+    </div>
+  </div>
+<div class="row">
+  <div class="center-align col s5">
+    <a OnClick=update_alarm('h','up')><i class="large mdi-hardware-keyboard-arrow-up"></i></a>
+  </div>
+  <div class="center-align col s2">
+    .
+  </div>
+  <div class="center-align col s5">
+    <a OnClick=update_alarm('m','up')><i class="large mdi-hardware-keyboard-arrow-up"></i></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="center-align col s5">
+    <input min="0" max="23"  style="font-size:3rem;" class="center-align browser-default" type=text size=2 id='h1' name='h1' value=00 onBlur=update_alarm('h','none')>
+  </div>
+  <div class="center-align col s2">
+    <b style="font-size:3rem;">:</b>
+  </div>
+  <div class="center-align col s5">
+    <input min="0" max="59"  style="font-size:3rem;" class="center-align browser-default" type=text size=2 id='m1' name='m1' value=00 onBlur=update_alarm('m','none')>
+  </div>
+</div>
+
+<div class="row">
+  <div class="center-align col s5">
+    <a OnClick=update_alarm('h','down')><i class="large mdi-hardware-keyboard-arrow-down"></i></a>
+  </div>
+  <div class="center-align col s2">
+    .
+  </div>
+  <div class="center-align col s5">
+    <a OnClick=update_alarm('m','down')><i class="large mdi-hardware-keyboard-arrow-down"></i></a>
+  </div>
+</div>
+<!--einde test-->
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/handlebars.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/materialize.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/index.js"></script>
+<script type="text/javascript">
+app.initialize();
+</script>
