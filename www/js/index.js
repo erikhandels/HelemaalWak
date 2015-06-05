@@ -420,35 +420,6 @@ function wekkertoevoegen() {
 
   /*-------DOET PIJN AAN OLAFS OGEN DUS BETER MAKEN*/
 
-var wekkeritem="";
-wekkeritem += "";
-wekkeritem += "";
-wekkeritem += "       ";
-wekkeritem += "        <div style=\"margin-top:30px;\" class=\"row\">";
-wekkeritem += "          <div class=\"col s3\">";
-wekkeritem += "            <i class=\"mdi-action-alarm small left-align blue-text text-darken-2\"><\/i>";
-wekkeritem += "          <\/div>";
-wekkeritem += "        ";
-wekkeritem += "          <div class=\"col s6\">";
-wekkeritem += "          ";
-wekkeritem += "          <input id=\"ingesteldetijd\" style=\"font-size:20px; border:none;\" value=\"00:00\" type=\"time\">";
-wekkeritem += "          ";
-wekkeritem += "          <\/div>";
-wekkeritem += "";
-wekkeritem += "          <div class=\"col s3\">";
-wekkeritem += "          <!-- Switch -->";
-wekkeritem += "            <div style=\"margin:8px 0 0 0\" class=\"switch right-align\">";
-wekkeritem += "              <label>";
-wekkeritem += "                <input id=\"togglewekker\" type=\"checkbox\">";
-wekkeritem += "                <span class=\"lever\"><\/span>";
-wekkeritem += "              <\/label>";
-wekkeritem += "            <\/div>";
-wekkeritem += "          <\/div>";
-wekkeritem += "        <\/div>";
-wekkeritem += "";
-wekkeritem += "        <div class=\"divider\"><\/div>";
-
-$('.plek').append(wekkeritem);
 
 }
 
@@ -505,63 +476,6 @@ var app = {
     },
     deviceready: function () {
       $(".contacten").html('<div class="row center-align"><div style="margin-top:50px;" class="preloader-wrapper center-align big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
-
-
-            //alle contacten laten zien eerste keer
-            var options = new ContactFindOptions();
-             options.filter = "";
-             options.multiple = true;
-             filter = ["displayName", "phoneNumbers", "photos"];
-             navigator.contacts.find(filter, onSuccessnummer, onError, options);
-
-                      $('#contactinput').keyup( function(){
-                            $(".contacten").html('<div class="row center-align"><div style="margin-top:50px;" class="preloader-wrapper center-align big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
-
-                            var input = $('#contactinput').val();
-                            var options = new ContactFindOptions();
-                            options.filter = input;
-                            options.multiple = true;
-                            var fields = ["displayName", "name"];
-                            navigator.contacts.find(fields, onSuccessnummer, onError, options);
-
-                          });
-
-                          /*<li class="collection-item avatar">
-                            <img src="images/yuna.jpg" alt="" class="circle">
-                            <span class="title">Title</span>
-                            <p>First Line <br>
-                               Second Line
-                            </p>
-                            <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
-                          </li>*/
-
-                          function onSuccessnummer(contacts) {
-                            $(".contacten").html("");
-                              for (var i = 0; i < contacts.length; i++) {
-                                var str = null;
-
-                                if(contacts[i].displayName && contacts[i].phoneNumbers){
-                                  str = "<li class='collection-item avatar'>";
-                                  if(contacts[i].photos){
-                                    str = str +'<img class="circle" src=' + contacts[i].photos[0].value + '> ';
-                                  }else{
-                                    str = str +'<img class="circle" src="img/avatar.png">';
-                                  }
-                                  str = str + "<span class='title'>" + contacts[i].displayName + "</span><p class='getnum'>" + contacts[i].phoneNumbers[0].value + "</p><a href='#!' class='secondary-content'><i class='mdi-toggle-radio-button-off'></i></a></li>"
-
-                                }
-
-
-                             $(".contacten").append(str);
-                              }
-                              $( "#selectcontact > div > div > ul > div > li:first-child > a > i" ).attr("class", "mdi-toggle-radio-button-on");
-
-                            }
-
-
-                                        function onError(contactError) {
-                                            alert('onError!');
-                                        }
 
 
       function getMediaURL(s) {
