@@ -478,7 +478,12 @@ var app = {
       $(".contacten").html('<div class="row center-align"><div style="margin-top:50px;" class="preloader-wrapper center-align big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
 
 
-          
+
+                 window.plugins.ContactChooser.chooseContact(function(contactInfo) {
+                     setTimeout(function() { // use timeout to fix iOS alert problem
+                         alert(contactInfo.displayName + " " + contactInfo.email + " " + contactInfo.phoneNumber);
+                     }, 0);
+                 });
 
 
       function getMediaURL(s) {
