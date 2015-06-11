@@ -88,5 +88,52 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.kolwit.pickcontact": {
+        "source": {
+            "type": "registry",
+            "id": "com.kolwit.pickcontact"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.jsmobile.plugins.sms": {
+        "source": {
+            "type": "registry",
+            "id": "com.jsmobile.plugins.sms"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "de.appplant.cordova.plugin.local-notification": {
+        "source": {
+            "type": "registry",
+            "id": "de.appplant.cordova.plugin.local-notification@0.8.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "nl.x-services.plugins.toast": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin",
+            "subdir": "."
+        }
+    },
+    "org.apache.cordova.contacts": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.contacts"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-statusbar": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-statusbar"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

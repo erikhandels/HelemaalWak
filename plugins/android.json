@@ -15,7 +15,11 @@
                     ],
                     "/*": [
                         {
-                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
+                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"com.jsmobile.plugins.sms.Sms\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PickContact\"><param name=\"android-package\" value=\"com.kolwit.cordova.PickContactPlugin\" /></feature>",
                             "count": 1
                         },
                         {
@@ -35,6 +39,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
@@ -48,6 +56,10 @@
                         },
                         {
                             "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -65,6 +77,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
+                            "count": 1
+                        },
+                        {
                             "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
                             "count": 1
                         },
@@ -76,7 +92,7 @@
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
@@ -108,35 +124,47 @@
         }
     },
     "installed_plugins": {
-        "com.chariotsolutions.nfc.plugin": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+        "android.support.v4": {
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
-        "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+        "com.chariotsolutions.nfc.plugin": {
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
+        },
+        "com.jsmobile.plugins.sms": {
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
+        },
+        "com.kolwit.pickcontact": {
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "nl.x-services.plugins.flashlight": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
+        },
+        "org.apache.cordova.contacts": {
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "org.apache.cordova.dialogs": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "org.apache.cordova.file": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         },
         "org.apache.cordova.media": {
-            "PACKAGE_NAME": "com.phonegap.helemaalwakv11"
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.phonegap.helemaalwakv17"
         }
     },
     "dependent_plugins": {}

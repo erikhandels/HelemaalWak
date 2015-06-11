@@ -237,3 +237,91 @@ background: #fff;
   padding:0 !important;
   margin:0 !important;
 }
+
+.nm {
+
+ margin:0 !important;
+	
+}
+
+.lidnaam, .lidtelefoonnummer {
+
+font-weight:600;
+}
+
+.gekozencontact {
+
+  margin-bottom: 10px;
+
+}
+
+.opslaanknop {
+
+display:none;
+
+}
+
+.blauw {
+
+background:#1565c0;
+color:#ffffff;
+border-radius:0px !important;
+
+}
+
+.blauwecolor {
+
+color:#1565c0;
+	
+}
+
+.slider .slides li .caption {
+
+top:5% !important;
+	
+}
+
+.blauwpijltje {
+
+  color: #ffffff;
+  font-size: 50px !important;
+	
+}
+.wekkerinput {
+
+  font-size: 100px !important;
+  height: auto !important;
+  color: #FFFFFF;
+  line-height: 100px !important;
+  border:none;
+  margin:0;
+  padding:0;
+	
+}
+
+.btn:hover, .btn-large:hover, .btn-large:active, .btn-large:focus {
+
+background:rgba(21, 101, 192, 0.6);
+
+}
+
+#wekkernaaminput {
+
+  font-size: 35px;
+  line-height: 50px;
+  color: #333333;
+  height: 75px;
+	
+}
+
+input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #1565c0;
+  box-shadow: 0 1px 0 0 #1565c0;
+}
+
+.blue-text.text-darken-2.blauwmaken {
+	
+transition: all ease-in-out 0.5s;
+color:#333333 !important;
+	
+}

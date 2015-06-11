@@ -16,47 +16,37 @@
   <div id="appcontain">
 
   <header class="top-bar row">
-
-  <div class="col s12">
-
-  <p class="appnaam">Helemaalwak <a class="informatie" href="#"><i class="fa fa-info-circle"></i></a></p>
-
-  </div>
-
+    <div class="col s12">
+      <p class="appnaam">Helemaalwak <a class="informatie" href="#"><i class="fa fa-info-circle"></i></a></p>
+    </div>
   </header>
 
   <!--<p><a href="#" onclick="showConfirm(); return false;">Show Confirm</a></p>-->
     <ul class="tabs">
-    <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
-    <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
-  </ul>
-  <div id="wekkerview" class="col s12">
-    <div style="margin-top:30px;" class="row wekkeritem">
-      <div class="col s12 center-align">
-        <a id="wekkertoevoegknop" class="btn-floating btn-large waves-effect waves-light blue darken-2"><i class="mdi-action-alarm-add small"></i></a>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div id="wekker1" onclick="wekkerinstellen();" style="margin-top:30px;" class="row">
-      <div class="col s3">
-        <i class="mdi-action-alarm small left-align blue-text text-darken-2"></i>
-      </div>
-      <div class="col s6">
-        <b id="ingesteldetijd" style="font-size:20px; border:none;">00:00</b>
-      </div>
-      <div class="col s3">
-        <!-- Switch -->
-        <div style="margin:8px 0 0 0" class="switch right-align">
-          <label>
-            <input id="togglewekker" type="checkbox">
-            <span class="lever"></span>
-          </label>
-        </div>
-      </div>
-    </div>
-    </div>
+      <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
+      <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
+    </ul>
 
+    <div id="wekkerview" class="col s12">
     <div class="divider"></div>
+      <!-- onclick="wekkerinstellen(); -->
+<div>
+      <div style="margin-bottom:0px; margin-top:25px;" class="row">
+        <div style="font-size:25px;" class="col s12">
+        <span class="wekkernaamplaats">Wekker</span>
+      </div>
+      </div>
+      <div class="row">
+        <div style="font-size:60px;"  class="col s7" onclick="wekkerinstellen();">
+          <span id="ingesteldetijd">00:00</span>
+        </div>
+          <div  class="col s5">
+              <i style="font-size:57px;" id='wekkertoggle' class="mdi-action-alarm small right blue-text text-darken-2"></i>
+          </div>
+        </div>
+            <div class="divider"></div>
+      </div>
+    </div>
 
     <div id="statview" class="col s12">
 
@@ -129,6 +119,8 @@
 
 </div><!-- einde appcontain -->
 
+
+
 <div class="slider fullscreen">
   <ul class="slides">
 
@@ -177,15 +169,24 @@
 
   <div class="row">
     <div class="col s12">
-      <p class="flow-text">Selecteer de persoon die op de hoogte word gesteld wanneer jij niet op tijd opstaat:</p>
-      <input type="text" id="contactinput" placeholder="kies een contactpersoon">
-      <button onclick="alertContact()">Get Contact</button>
-        <ul class="collection">
-          <div class="contacten" style="height:315px;overflow:scroll;">
-          </div>
-        </ul>
-      <button id="nummeropslaan" style="width:100%;" class="btn-large blue darken-5" onclick="slacontactop();">opslaan</button>
+      <p class="flow-text">Selecteer de persoon die op de hoogte wordt gesteld wanneer jij niet op tijd opstaat:</p>
+
+       <div class="divider"></div>
+
+      </div>
+    <div class='col s12 gekozencontact'>
+
     </div>
+
+    <div class="col s12">
+
+     <button onclick="kiescontact();" style="width:100%; margin-bottom: 15px;" class="btn-large blauw kiescontactknop">Kiezen</button>
+
+    <button id="nummeropslaan" onclick="nummeropslaan();" style="width:100%;" class="btn-large blauw opslaanknop">Opslaan</button>
+
+    </div>
+
+
   </div>
 </div>
 
@@ -193,52 +194,52 @@
 <div id="wekkerinstelview">
 <div class="row np">
     <div class="col s6 np">
-      <button id="annuleren" style="width:100%; border-right:1px solid #fff;" class="btn-large blue darken-5" onclick="$('#wekkerinstelview').hide();">annuleren</button>
+      <button id="annuleren" style="width:100%;" class="btn-large blauw" onclick="$('#wekkerinstelview').hide();">annuleren</button>
     </div>
     <div class="col s6 np">
-      <button id="tijdopslaan" style="width:100%;" class="btn-large blue darken-5" onclick="tijdopslaan(); $('#wekkerinstelview').hide();">opslaan</button>
+      <button id="tijdopslaan" style="width:100%;" class="btn-large blauw" onclick="tijdopslaan(); $('#wekkerinstelview').hide();">opslaan</button>
     </div>
   </div>
 
 
-  <div class="row">
+  <div class="row nm">
     <div class="col s12">
-      <input type="text" placeholder="Wekkernaam">
+      <input type="text" id='wekkernaaminput' placeholder="Wekkernaam">
     </div>
   </div>
-<div class="row">
+<div class="row blauw nm">
   <div class="center-align col s5">
-    <a OnClick=update_alarm('h','up')><i class="large mdi-hardware-keyboard-arrow-up"></i></a>
+    <a OnClick=update_alarm('h','up')><i class="large mdi-navigation-arrow-drop-up blauwpijltje"></i></a>
   </div>
-  <div class="center-align col s2">
+  <div class="center-align col s2 blauwecolor">
     .
   </div>
   <div class="center-align col s5">
-    <a OnClick=update_alarm('m','up')><i class="large mdi-hardware-keyboard-arrow-up"></i></a>
+    <a OnClick=update_alarm('m','up')><i class="large mdi-navigation-arrow-drop-up blauwpijltje"></i></a>
   </div>
 </div>
 
-<div class="row">
+<div class="row blauw nm">
   <div class="center-align col s5">
-    <input min="0" max="23"  style="font-size:3rem;" class="center-align browser-default" type=text size=2 id='h1' name='h1' value=00 onBlur=update_alarm('h','none')>
+    <input min="0" max="23" class="center-align browser-default wekkerinput" type=number size=2 id='h1' name='h1' value=00 onBlur=update_alarm('h','none')>
   </div>
   <div class="center-align col s2">
-    <b style="font-size:3rem;">:</b>
+    <b class="wekkerinput">:</b>
   </div>
   <div class="center-align col s5">
-    <input min="0" max="59"  style="font-size:3rem;" class="center-align browser-default" type=text size=2 id='m1' name='m1' value=00 onBlur=update_alarm('m','none')>
+    <input min="0" max="59" class="center-align browser-default wekkerinput" type=number size=2 id='m1' name='m1' value=00 onBlur=update_alarm('m','none')>
   </div>
 </div>
 
-<div class="row">
+<div class="row blauw nm">
   <div class="center-align col s5">
-    <a OnClick=update_alarm('h','down')><i class="large mdi-hardware-keyboard-arrow-down"></i></a>
+    <a OnClick=update_alarm('h','down')><i class="large mdi-navigation-arrow-drop-down blauwpijltje"></i></a>
   </div>
-  <div class="center-align col s2">
+  <div class="center-align col s2 blauwecolor">
     .
   </div>
   <div class="center-align col s5">
-    <a OnClick=update_alarm('m','down')><i class="large mdi-hardware-keyboard-arrow-down"></i></a>
+    <a OnClick=update_alarm('m','down')><i class="large mdi-navigation-arrow-drop-down blauwpijltje"></i></a>
   </div>
 </div>
 <!--einde test-->

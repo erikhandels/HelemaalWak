@@ -6,66 +6,17 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-contacts/www/contacts.js",
-        "id": "cordova-plugin-contacts.contacts",
+        "file": "plugins/com.jsmobile.plugins.sms/www/sms.js",
+        "id": "com.jsmobile.plugins.sms.sms",
         "clobbers": [
-            "navigator.contacts"
+            "window.sms"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-contacts/www/Contact.js",
-        "id": "cordova-plugin-contacts.Contact",
+        "file": "plugins/com.kolwit.pickcontact/www/PickContact.js",
+        "id": "com.kolwit.pickcontact.PickContact",
         "clobbers": [
-            "Contact"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactAddress.js",
-        "id": "cordova-plugin-contacts.ContactAddress",
-        "clobbers": [
-            "ContactAddress"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactError.js",
-        "id": "cordova-plugin-contacts.ContactError",
-        "clobbers": [
-            "ContactError"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactField.js",
-        "id": "cordova-plugin-contacts.ContactField",
-        "clobbers": [
-            "ContactField"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactFindOptions.js",
-        "id": "cordova-plugin-contacts.ContactFindOptions",
-        "clobbers": [
-            "ContactFindOptions"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactName.js",
-        "id": "cordova-plugin-contacts.ContactName",
-        "clobbers": [
-            "ContactName"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactOrganization.js",
-        "id": "cordova-plugin-contacts.ContactOrganization",
-        "clobbers": [
-            "ContactOrganization"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-contacts/www/ContactFieldType.js",
-        "id": "cordova-plugin-contacts.ContactFieldType",
-        "merges": [
-            ""
+            "PickContact"
         ]
     },
     {
@@ -93,6 +44,69 @@ module.exports = [
         "id": "nl.x-services.plugins.flashlight.Flashlight",
         "clobbers": [
             "window.plugins.flashlight"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/contacts.js",
+        "id": "org.apache.cordova.contacts.contacts",
+        "clobbers": [
+            "navigator.contacts"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/Contact.js",
+        "id": "org.apache.cordova.contacts.Contact",
+        "clobbers": [
+            "Contact"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactAddress.js",
+        "id": "org.apache.cordova.contacts.ContactAddress",
+        "clobbers": [
+            "ContactAddress"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactError.js",
+        "id": "org.apache.cordova.contacts.ContactError",
+        "clobbers": [
+            "ContactError"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactField.js",
+        "id": "org.apache.cordova.contacts.ContactField",
+        "clobbers": [
+            "ContactField"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactFindOptions.js",
+        "id": "org.apache.cordova.contacts.ContactFindOptions",
+        "clobbers": [
+            "ContactFindOptions"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactName.js",
+        "id": "org.apache.cordova.contacts.ContactName",
+        "clobbers": [
+            "ContactName"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactOrganization.js",
+        "id": "org.apache.cordova.contacts.ContactOrganization",
+        "clobbers": [
+            "ContactOrganization"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.contacts/www/ContactFieldType.js",
+        "id": "org.apache.cordova.contacts.ContactFieldType",
+        "merges": [
+            ""
         ]
     },
     {
@@ -275,21 +289,32 @@ module.exports = [
         "clobbers": [
             "window.Media"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "id": "cordova-plugin-statusbar.statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "android.support.v4": "21.0.1",
     "com.chariotsolutions.nfc.plugin": "0.6.2",
-    "cordova-plugin-contacts": "1.0.0",
+    "com.jsmobile.plugins.sms": "0.0.1",
+    "com.kolwit.pickcontact": "1.0.4",
     "cordova-plugin-splashscreen": "2.0.0",
     "cordova-plugin-vibration": "1.1.0",
     "cordova-plugin-whitelist": "1.0.0",
     "nl.x-services.plugins.flashlight": "2.0.3",
+    "org.apache.cordova.contacts": "0.2.16",
     "org.apache.cordova.device": "0.3.0",
     "org.apache.cordova.dialogs": "0.3.0",
     "org.apache.cordova.file": "1.3.3",
-    "org.apache.cordova.media": "0.2.16"
+    "org.apache.cordova.media": "0.2.16",
+    "cordova-plugin-statusbar": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

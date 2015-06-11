@@ -1,3 +1,4 @@
+
 localStorage.setItem('eerstestart', 'ja' ); //voor testen met introscherm aanzetten
 
 function wekkerinstellen(){
@@ -5,29 +6,92 @@ function wekkerinstellen(){
   $("#wekkerinstelview").show(0);
 }
 
+function showConfirm() {
+      navigator.notification.confirm(
+            'Weet u zeker dat u HelemaalWak wilt verlaten?', // message
+             onConfirm,            // callback to invoke with index of button pressed
+            'Verlaat ons niet!',           // title
+            ['Annuleren','Afsluiten']         // buttonLabels
+        );
+    }
+	
+	function onConfirm(buttonIndex) {
+		
+		if (buttonIndex == 1 ) {
+			
+		return false;
+	
+		}
+		
+		else {
+		
+		navigator.app.exitApp();
+			
+		}
+    }
+
 function tijdopslaan(){
   localStorage.setItem('alarmtijd2', window.alarmtijd);
   console.log(localStorage.getItem('alarmtijd2'));
   //sla de ingestelde tijd op
+  if($('#wekkernaaminput').val()){
+
+    window.wekkernaam = $('#wekkernaaminput').val();
+  }else{
+    window.wekkernaam = "Wekker";
+  }
+  localStorage.setItem('wekkernaam', window.wekkernaam);
+  refreshview();
+}
+
+function selectcontact(){
+$('#selectcontact').show(0);
+$('.slider').delay(500).hide(0);
 }
 
 
-        function selectcontact(){
-          $('#selectcontact').show(0);
-          $('.slider').delay(500).hide(0);
-        }
+function nummeropslaan(){
+$('#appcontain').show(0);
+$('#selectcontact').delay(500).hide(0);
 
-        function slacontactop(){
-          Materialize.toast('Contact opgeslagen', 2000);
-          $('#appcontain').show(0);
-          $('#selectcontact').hide(0);
-          $('.slider').delay(500).hide(0);
-          console.log(window.opgeslagennummer);
-          localStorage.setItem('telnummer', window.opgeslagennummer );
-          $('.shownummer').html("Contactpersoon: " + localStorage.getItem('telnummer'));
-          //refreshview();
+var messageInfo = {
+    phoneNumber: window.telefoonnummer,
+    textMessage: "Ik heb je zojuist binnen de wekker-app 'HelemaalWak' ingesteld als mijn wake-up buddy."
+};
 
-        }
+sms.sendMessage(messageInfo, function(message) {
+    console.log("success: " + message);
+}, function(error) {
+    console.log("code: " + error.code + ", message: " + error.message);
+});
+
+}
+
+function kiescontact() {
+
+	window.plugins.PickContact.chooseContact(function (contactInfo) {
+    window.telefoonnummer = (contactInfo.phoneNr);
+	window.lidnaam = (contactInfo.displayName);
+	$('.kiescontactknop').replaceWith('<button onclick="kiesnieuwcontact();" style="width:100%; margin-bottom: 15px;" class="btn-large blauw kiescontactknop">Kies opnieuw</button>');
+	$('.gekozencontact').append("<p class='gekozentekst flow-text'>Je hebt gekozen voor: </p><div class='col s12 np'><span class='lidnaam flow-text'>" + window.lidnaam + "</span><br><span class='lidtelefoonnummer flow-text'>" + window.telefoonnummer + "</span></div><div class='divider'></div>");
+
+	$('button#nummeropslaan').show();
+
+Materialize.toast('Contactpersoon geselecteerd!', 2500);
+
+});
+}
+
+function kiesnieuwcontact() {
+
+	window.plugins.PickContact.chooseContact(function (contactInfo) {
+    window.telefoonnummer = (contactInfo.phoneNr);
+	window.lidnaam = (contactInfo.displayName);
+	$('.gekozencontact .lidnaam').replaceWith("<span class='lidnaam flow-text'>" + window.lidnaam + "</span>");
+	$('.gekozencontact .lidtelefoonnummer').replaceWith("<span class='lidtelefoonnummer flow-text'>" + window.telefoonnummer + "</span>");
+	Materialize.toast('Contactpersoon geselecteerd!', 2500);
+	});
+}
 
           $('body').on('click', '.collection-item', function(e) {
            e.preventDefault();
@@ -43,6 +107,8 @@ function tijdopslaan(){
 
     function refreshview(){
       if( localStorage.getItem('gemiddeldgevoel') == 0){
+        $('.wekkernaamplaats').html(localStorage.getItem('wekkernaam'));
+        $('#ingesteldetijd').html(localStorage.getItem('alarmtijd2'));
        /* $('.gemiddeldgevoel').html( "Geen gemiddelde beschikbaar " );
         $('.totaalopslaan').html( "geen stats beschikbaar" );
         $('.cijfers').append( 'Geen cijfers beschikbaar' );
@@ -118,9 +184,6 @@ function tijdopslaan(){
 
     }
 
-
-
-
     /*------------------------timepicker------------------*/
 
     function update_alarm(type,direction) {
@@ -168,12 +231,6 @@ function tijdopslaan(){
     window.alarmtijd = document.getElementById('h1').value + ':' + document.getElementById('m1').value;
     console.log(window.alarmtijd);
      }
-
-
-
-
-
-
 
 
 
@@ -235,7 +292,7 @@ $('.alarmtijd').replaceWith('<p class="alarmtekst center-align">Het is nu<br><sp
 
 
 fase = 1;
-$("#togglewekker").prop('checked', true);
+//$("#togglewekker").prop('checked', true);
 //console.log('Fase ' + fase +'= ' + fase1_URL);
 wekkeraan();
 window.counter = 0;
@@ -245,7 +302,7 @@ window.counter = 0;
 function wekkeraanfase2() {
 
 fase = 2;
-$("#togglewekker").prop('checked', true);
+//$("#togglewekker").prop('checked', true);
 //console.log('Fase ' + fase +'= ' + fase2_URL);
 wekkeraan();
 window.counter = 0;
@@ -255,7 +312,7 @@ window.counter = 0;
 function wekkeraanfase3() {
 
 fase = 3;
-$("#togglewekker").prop('checked', true);
+//$("#togglewekker").prop('checked', true);
 //console.log('Fase ' + fase +'= ' + fase3_URL);
 wekkeraan();
 window.counter = 0;
@@ -271,7 +328,7 @@ function mediaError(e) {
 function wekkeraan(){
 //console.log("wekker aan gestart");
 
-if(document.getElementById('togglewekker').checked) {
+//if(document.getElementById('togglewekker').checked) {
 //console.log("if checked gestart");
 window.counter = window.counter + 1;
 
@@ -304,7 +361,7 @@ fase = 0;
 
 }
 
-}
+//}
 
 function play_fase1_mp3() {
   window.my_media_fase1.play();
@@ -323,7 +380,7 @@ function play_fase3_mp3() {
 
 function snooze() {
 
-$("#togglewekker").prop('checked', false);
+/*$("#togglewekker").prop('checked', false);*/
 
 clearInterval(window.timer);
 
@@ -337,7 +394,9 @@ window.counter = 0;
 
 stopmp3();
 
-$("#alarmview").hide('fast');
+$("#alarmview").hide();
+
+console.log.snooze1 = localStorage.getItem('alarmtijd2');
 
 }
 
@@ -345,7 +404,7 @@ $("#alarmview").hide('fast');
 
 function wekkeruit(){
 
-$("#togglewekker").prop('checked', false);
+/*$("#togglewekker").prop('checked', false);*/
 
 clearInterval(window.timer);
 
@@ -451,16 +510,27 @@ $( document ).ready(function() {
 	$('.telefoontijd').append('Het is nu: ' + telefoontijd);
 	$('.alarmtijd').append('Het is nu: ' + window.x);
 
-	$("#ingesteldetijd").on("input", function() {
+/*	$("#ingesteldetijd").on("input", function() {
 	$("#togglewekker").prop('checked', true);
 
+	});*/
+	
+	window.checker = true;
+	console.log(checker);
+
+	$('#wekkertoggle').click(function() {
+
+	$(this).toggleClass('blauwmaken');
+	
 	});
-
-	$('#wekkertoevoegknop').click(function() {
-
-	wekkertoevoegen();
-
+	
+	$('.blauwmaken').click(function() {
+	
+	window.checker = false;
+	console.log(checker);
+		
 	});
+	
 
 });//einde doc.reacy
 
@@ -474,16 +544,20 @@ var app = {
     bind: function () {
         document.addEventListener('deviceready', this.deviceready, false);
     },
+
+	
     deviceready: function () {
       $(".contacten").html('<div class="row center-align"><div style="margin-top:50px;" class="preloader-wrapper center-align big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
-
-
-
-                 window.plugins.ContactChooser.chooseContact(function(contactInfo) {
-                     setTimeout(function() { // use timeout to fix iOS alert problem
-                         alert(contactInfo.displayName + " " + contactInfo.email + " " + contactInfo.phoneNumber);
-                     }, 0);
-                 });
+	  
+	  	
+	
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	
+	function onBackKeyDown() {	
+		    	
+	showConfirm();
+	
+	}
 
 
       function getMediaURL(s) {
@@ -708,3 +782,6 @@ function tnfToString(tnf) {
     }
     return value;
 }
+
+refreshview();
+update_alarm();
