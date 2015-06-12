@@ -165,16 +165,16 @@ function kiesnieuwcontact() {
 
     function refreshview(){
 
-
         $('#ingesteldetijd').html(localStorage.getItem('alarmtijd2'));
 		      $('#ingesteldetijd2').html(localStorage.getItem('fase2tijd'));
 		        $('#ingesteldetijd3').html(localStorage.getItem('fase3tijd'));
+            $("#nietgehaald").html(localStorage.getItem('falen'));
 
             $.getJSON("http://i264371.iris.fhict.nl/api/wak/uitlezen.php", function(data){
                $("#goed").html(data.goed);
                $("#matig").html(data.matig);
                $("#slecht").html(data.slecht);
-               $("#nietgehaald").html("0");
+
                $("#best").html("Jij voelt je 's ochtends het beste na " + data.fasegoedvoel + " keer snoozen");
              });
     }
@@ -193,6 +193,7 @@ function kiesnieuwcontact() {
 	  localStorage.setItem('alarmtijd2', '00:00');
 	  localStorage.setItem('fase2tijd', '00:00');
 	  localStorage.setItem('fase3tijd', '00:00');
+    localStorage.setItem('falen', 0);
       introview();
       $.get("http://i264371.iris.fhict.nl/api/wak/dbaanmaken.php", function(data){
          console.log(data);
@@ -425,6 +426,13 @@ $('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><s
 $('#snoozeknopfase2').replaceWith('<a style="width:100%;" id="snoozeknopfase" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>');
 Materialize.toast('U heeft gefaald..', 2000);
 
+window.falen = localStorage.getItem('falen');
+window.falen++;
+localStorage.setItem('falen', window.falen);
+
+refreshview();
+
+
 
 }
 
@@ -567,7 +575,7 @@ function wekkerafgaan() {
 
 			if (window.counter == 3) {
 
-			wekkeraanfase3();
+			wekkeraanfase3(); //over 5 minuten snooze3 uitvoeren en timeout killen als nfc is gescanned
 
 			}
 
