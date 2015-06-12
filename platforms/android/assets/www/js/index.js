@@ -14,19 +14,19 @@ function showConfirm() {
             ['Annuleren','Afsluiten']         // buttonLabels
         );
     }
-	
+
 	function onConfirm(buttonIndex) {
-		
+
 		if (buttonIndex == 1 ) {
-			
+
 		return false;
-	
+
 		}
-		
+
 		else {
-		
+
 		navigator.app.exitApp();
-			
+
 		}
     }
 
@@ -105,21 +105,30 @@ function kiesnieuwcontact() {
                //$( "#iksnaphet" ).attr('onclick', "slacontactop();");
           });
 
-    function refreshview(){
-      if( localStorage.getItem('gemiddeldgevoel') == 0){
-        $('.wekkernaamplaats').html(localStorage.getItem('wekkernaam'));
-        $('#ingesteldetijd').html(localStorage.getItem('alarmtijd2'));
-       /* $('.gemiddeldgevoel').html( "Geen gemiddelde beschikbaar " );
-        $('.totaalopslaan').html( "geen stats beschikbaar" );
-        $('.cijfers').append( 'Geen cijfers beschikbaar' );
-        $('.shownummer').html("Contactpersoon: " + localStorage.getItem('telnummer'));*/
-      }else{
-        /*$('.shownummer').html("Contactpersoon: " + localStorage.getItem('telnummer'));
-        $('.cijfers').html(" ");
-        $('.cijfers').append( '<div clas="col s6"><i class="fa fa-meh-o"></i><br><span class="cijfer">' + localStorage.getItem('fase1x') + "</span></div>" );
-        $('.cijfers').append( '<div clas="col s6"><i class="fa fa-meh-o"></i><br><span class="cijfer">' + localStorage.getItem('fase2x') +"</span></div>" );*/
-      }
-    }
+          function refreshview(){
+
+                    $('.wekkernaamplaats').html(localStorage.getItem('wekkernaam'));
+                    $('#ingesteldetijd').html(localStorage.getItem('alarmtijd2'));
+
+                    $.getJSON("http://i264371.iris.fhict.nl/api/wak/uitlezen.php", function(data){
+                       /*console.log("alles" + data);
+                       console.log("totaal = " + data.totaalsnooze); // overflow
+                       console.log("goed = " + data.goed);   // value
+                       console.log("matig = " + data.matig);
+                       console.log("slecht = " + data.slecht);
+                       console.log("fasegoedvoel = " + data.fasegoedvoel);
+                       console.log("bericht = " + data.bericht);*/
+
+                       $("#goed").html(data.goed);
+                       $("#matig").html(data.matig);
+                       $("#slecht").html(data.slecht);
+                       $("#best").html("Jij voelt je 's ochtends het beste na " + data.fasegoedvoel + " keer snoozen");
+
+
+                     });
+
+
+                }
 
     function introview(){
       $('#appcontain').hide(0);
@@ -128,13 +137,17 @@ function kiesnieuwcontact() {
     }
 
     function eerstestart(){
-      console.log("eerstestart");
-      localStorage.setItem('eerstestart', 'nee' );
-      localStorage.setItem('totaalgevoel', 0);
-      localStorage.setItem('totaalopslaan', 0);
-      localStorage.setItem('gemiddeldgevoel', 0);
-      introview();
-    }
+            console.log("eerstestart");
+            localStorage.setItem('eerstestart', 'nee' );
+            localStorage.setItem('totaalgevoel', 0);
+            localStorage.setItem('totaalopslaan', 0);
+            localStorage.setItem('gemiddeldgevoel', 0);
+            introview();
+            $.get("http://i264371.iris.fhict.nl/api/wak/dbaanmaken.php", function(data){
+               console.log(data);
+             });
+
+          }
 
     if(localStorage.getItem('eerstestart') != 'nee'){
       eerstestart();
@@ -475,16 +488,17 @@ function wekkerafgaan() {
 
 	}
 
-function wekkertoevoegen() {
+function naarstatistieken(gevoel){
+  console.log(gevoel);
+    window.dbfase = 1; /*-----------------HIER MOET DE HUIDIGE FASE IN GEZET WORDEN------------------*/
 
-  /*-------DOET PIJN AAN OLAFS OGEN DUS BETER MAKEN*/
+    $.get("http://i264371.iris.fhict.nl/api/wak/opslaan.php?fase=" + window.dbfase + "&gevoel=" + gevoel, function(data){
+       console.log(data);
+     });
 
-
-}
-
-function naarstatistieken(){
   $('#alarmview').hide(0);
   $('ul.tabs').tabs('select_tab', 'statview');
+  refreshview();
 }
 
 
@@ -514,23 +528,23 @@ $( document ).ready(function() {
 	$("#togglewekker").prop('checked', true);
 
 	});*/
-	
+
 	window.checker = true;
-	console.log(checker);
+	console.log(window.checker);
 
 	$('#wekkertoggle').click(function() {
 
 	$(this).toggleClass('blauwmaken');
-	
+
 	});
-	
+
 	$('.blauwmaken').click(function() {
-	
+
 	window.checker = false;
-	console.log(checker);
-		
+	console.log(window.checker);
+
 	});
-	
+
 
 });//einde doc.reacy
 
@@ -545,18 +559,18 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, false);
     },
 
-	
+
     deviceready: function () {
       $(".contacten").html('<div class="row center-align"><div style="margin-top:50px;" class="preloader-wrapper center-align big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
-	  
-	  	
-	
+
+
+
 	document.addEventListener("backbutton", onBackKeyDown, false);
-	
-	function onBackKeyDown() {	
-		    	
+
+	function onBackKeyDown() {
+
 	showConfirm();
-	
+
 	}
 
 

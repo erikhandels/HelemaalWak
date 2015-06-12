@@ -23,8 +23,8 @@
 
   <!--<p><a href="#" onclick="showConfirm(); return false;">Show Confirm</a></p>-->
     <ul class="tabs">
-      <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
-      <li class="tab"><a style="padding:6px 0 0 0" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
+      <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
+      <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
     </ul>
 
     <div id="wekkerview" class="col s12">
@@ -58,19 +58,19 @@
       <div class="col s12">
       <div class="col s6">
       <i class='fa fa-smile-o'></i><br>
-      <span class="statgetal">15</span>
+      <span class="statgetal">-</span>
       </div>
       <div class="col s6">
       <i class='fa fa-meh-o'></i><br>
-      <span class="statgetal">8</span>
+      <span class="statgetal">-</span>
       </div>
       <div class="col s6">
       <i class='fa fa-frown-o'></i><br>
-      <span class="statgetal">4</span>
+      <span class="statgetal">-</span>
       </div>
       <div class="col s6">
       <i class='fa fa-remove'></i><br>
-      <span class="statgetal">2</span>
+      <span class="statgetal">-</span>
       </div>
       </div>
 
@@ -105,9 +105,10 @@
 
 		  <div class="row">
 
-		  <div class="col s4"><i class="smiley fa fa-smile-o" value="3" id="goed" onclick="naarstatistieken();"></i></div>
-		  <div class="col s4"><i class="smiley fa fa-meh-o" value="2" id="matig" onclick="naarstatistieken();"></i></div>
-		  <div class="col s4"><i class="smiley fa fa-frown-o" value="3" id="slecht" onclick="naarstatistieken();"></i></div>
+        <div class="col s4"><i class="smiley fa fa-smile-o" value="3" id="goed" onclick="naarstatistieken('3');"></i></div>
+        <div class="col s4"><i class="smiley fa fa-meh-o" value="2" id="matig" onclick="naarstatistieken('2');"></i></div>
+        <div class="col s4"><i class="smiley fa fa-frown-o" value="3" id="slecht" onclick="naarstatistieken('1');"></i></div>
+
 
 		  </div>
 
