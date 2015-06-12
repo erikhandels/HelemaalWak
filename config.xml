@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helemaalwakv17" version="12.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>HelemaalWakv17</name>
+<widget id="com.phonegap.helemaalwakv23" version="12.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>HelemaalWakv23</name>
     <description>
-        Helemaal wakker v17
+        Helemaal wakker v23
     </description>
     <author email="P_T_H_92@hotmail.com" href="http://petertenhoor.nl">
        Peter ten Hoor

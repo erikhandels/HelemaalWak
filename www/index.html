@@ -22,55 +22,84 @@
   </header>
 
   <!--<p><a href="#" onclick="showConfirm(); return false;">Show Confirm</a></p>-->
-    <ul class="tabs">
-      <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
-      <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
-    </ul>
+  <ul class="tabs">
+    <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
+    <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
+  </ul>
 
     <div id="wekkerview" class="col s12">
-    <div class="divider"></div>
-      <!-- onclick="wekkerinstellen(); -->
-<div>
+
+        <!-- Wekker fase 1 -->
       <div style="margin-bottom:0px; margin-top:25px;" class="row">
         <div style="font-size:25px;" class="col s12">
-        <span class="wekkernaamplaats">Wekker</span>
+        <span class="wekkernaamplaats">Fase 1</span>
       </div>
       </div>
-      <div class="row">
-        <div style="font-size:60px;"  class="col s7" onclick="wekkerinstellen();">
+      <div class="row nm">
+        <div style="font-size:60px;"  class="col s7 vervangen" onclick="wekkerinstellen();">
           <span id="ingesteldetijd">00:00</span>
         </div>
-          <div  class="col s5">
-              <i style="font-size:57px;" id='wekkertoggle' class="mdi-action-alarm small right blue-text text-darken-2"></i>
+          <div class="col s5">
+          <i style="font-size:57px;" id='wekkertoggle' class="mdi-action-alarm small right blue-text text-darken-2"></i>
           </div>
-        </div>
-            <div class="divider"></div>
+          </div>
+          <div class="divider"></div>
+
+        <!-- Wekker fase 2 -->
+
+          <div style="margin-bottom:0px; margin-top:25px;" class="row">
+        <div style="font-size:25px;" class="col s12">
+        <span class="wekkernaamplaats2">Fase 2</span>
       </div>
-    </div>
+      </div>
+      <div class="row nm">
+        <div style="font-size:60px;" class="col s7">
+          <span id="ingesteldetijd2">00:00</span>
+        </div>
+        </div>
+        <div class="divider"></div>
+
+            <!-- Wekker fase 3 -->
+
+          <div style="margin-bottom:0px; margin-top:25px;" class="row">
+        <div style="font-size:25px;" class="col s12">
+        <span class="wekkernaamplaats3">Fase 3</span>
+      </div>
+      </div>
+      <div class="row nm">
+        <div style="font-size:60px;"  class="col s7">
+          <span id="ingesteldetijd3">00:00</span>
+        </div>
+
+       </div>
+       </div>
+
+
+
 
     <div id="statview" class="col s12">
 
     <div class="row">
 
       <div class="col s12">
-      <p class="leesbaar">Jij voelt je s'ochtends het beste na 2 x snoozen (10 minuten).</p>
+      <p id="best" class="leesbaar">Jij voelt je s'ochtends het beste na 2 x snoozen (10 minuten).</p>
 	  </div>
       <div class="col s12">
       <div class="col s6">
       <i class='fa fa-smile-o'></i><br>
-      <span class="statgetal">-</span>
+      <span id="goed" class="statgetal"></span>
       </div>
       <div class="col s6">
       <i class='fa fa-meh-o'></i><br>
-      <span class="statgetal">-</span>
+      <span id="matig" class="statgetal"></span>
       </div>
       <div class="col s6">
       <i class='fa fa-frown-o'></i><br>
-      <span class="statgetal">-</span>
+      <span id="slecht" class="statgetal"></span>
       </div>
       <div class="col s6">
       <i class='fa fa-remove'></i><br>
-      <span class="statgetal">-</span>
+      <span id="nietgehaald" class="statgetal">0</span>
       </div>
       </div>
 
@@ -83,9 +112,10 @@
         <div id="tagContents">
           <div class="hidden">
             <p class="uppercase center fase">Fase 1</p>
-            <i style="font-size:220px;" class="shake mdi-action-alarm large blue-text text-lighten-5"></i>
-            <p class="alarmtijd center-align">Het is nu</p>
+            <i style="font-size:100px;" class="shake mdi-action-alarm large blue-text text-lighten-5"></i>
+            <p class="alarmtekst center-align"><br><span class="alarmtijd"></span></p>
             <a style="width:100%;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>
+
           </div>
         </div>
         <script id="non-ndef-template" type="text/x-handlebars-template">
@@ -108,7 +138,6 @@
         <div class="col s4"><i class="smiley fa fa-smile-o" value="3" id="goed" onclick="naarstatistieken('3');"></i></div>
         <div class="col s4"><i class="smiley fa fa-meh-o" value="2" id="matig" onclick="naarstatistieken('2');"></i></div>
         <div class="col s4"><i class="smiley fa fa-frown-o" value="3" id="slecht" onclick="naarstatistieken('1');"></i></div>
-
 
 		  </div>
 
@@ -205,7 +234,7 @@
 
   <div class="row nm">
     <div class="col s12">
-      <input type="text" id='wekkernaaminput' placeholder="Wekkernaam">
+      <p class="flow-text">Stel in hoe laat fase 1 begint</p>
     </div>
   </div>
 <div class="row blauw nm">
@@ -222,13 +251,13 @@
 
 <div class="row blauw nm">
   <div class="center-align col s5">
-    <input min="0" max="23" class="center-align browser-default wekkerinput" type=number size=2 id='h1' name='h1' value=00 onBlur=update_alarm('h','none')>
+    <input maxlength="2" onclick="$('#h1').select();" min="0" max="23" class="center-align browser-default wekkerinput" type=number size=2 id='h1' name='h1' value=00 onBlur=update_alarm('h','none')>
   </div>
   <div class="center-align col s2">
     <b class="wekkerinput">:</b>
   </div>
   <div class="center-align col s5">
-    <input min="0" max="59" class="center-align browser-default wekkerinput" type=number size=2 id='m1' name='m1' value=00 onBlur=update_alarm('m','none')>
+    <input maxlength="2" onclick="$('#m1').select();" min="0" max="59" class="center-align browser-default wekkerinput" type=number size=2 id='m1' name='m1' value=00 onBlur=update_alarm('m','none')>
   </div>
 </div>
 

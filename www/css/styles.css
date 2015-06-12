@@ -84,7 +84,7 @@ font-size: 18px;
 
 }
 
-#buttonuituitleg, #snoozeknopfase1, #opslaanmood {
+#buttonuituitleg, #snoozeknopfase1, #snoozeknopfase2, #snoozeknopfase3, #opslaanmood {
 
 color:#333333;
 width:100%;
@@ -323,5 +323,11 @@ input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly
 	
 transition: all ease-in-out 0.5s;
 color:#333333 !important;
+	
+}
+
+.wekkernaamplaats2, .wekkernaamplaats3, #ingesteldetijd2, #ingesteldetijd3{
+
+color:#dadada;
 	
 }
