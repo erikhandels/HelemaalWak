@@ -373,6 +373,10 @@ function kiesnieuwcontact() {
 
 	function snooze() {
 
+    clearInterval(window.timerinterval1);
+
+
+
 	window.counter = window.counter +2;
 	clearInterval(window.timer);
 	flashuit();
@@ -391,6 +395,9 @@ function kiesnieuwcontact() {
 
 	function snooze2() {
 
+    clearInterval(window.timerinterval2);
+
+
 	window.counter = window.counter +3;
 	clearInterval(window.timer);
 	flashuit();
@@ -407,6 +414,11 @@ function kiesnieuwcontact() {
 	}
 
 	function snooze3() {
+
+    clearInterval(window.timerinterval3);
+    clearInterval(window.knipperinterval);
+
+    $('#alarmview').removeClass('knipperen');
 
 	window.counter = 0;
 	clearInterval(window.timer);
@@ -494,7 +506,7 @@ function kiesnieuwcontact() {
 		$('.timerplek').text(window.timercounter3);
 		if (window.timercounter3 == 0) {
 			clearInterval(window.timerinterval3);
-			clearInterval(window.knipperinterval3);
+			clearInterval(window.knipperinterval);
 			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
 			snooze3();
 			}
@@ -607,11 +619,9 @@ function kiesnieuwcontact() {
 
 	window.my_media_win.play();
 	clearInterval(window.timerinterval1);
-	clearInterval(window.knipperinterval1);
 	clearInterval(window.timerinterval2);
-	clearInterval(window.knipperinterval2);
 	clearInterval(window.timerinterval3);
-	clearInterval(window.knipperinterval3);
+	clearInterval(window.knipperinterval);
 	$('#wekkertoggle').show();
 	$('.terugzetten').replaceWith('<div style="font-size:60px;"  class="col s7 vervangen" onclick="wekkerinstellen();"><span id="ingesteldetijd">' + window.x +'</span></div>');
 	$('.wekkernaamplaats3').css({"color": "#dadada"});
@@ -622,10 +632,6 @@ function kiesnieuwcontact() {
 	$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x +"</span></p>");
 	$('#snoozeknopfase3').replaceWith(' <a style="width:100%; color:#333333;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>');
 	window.counter = 0;
-
-  setTimeout(function () {
-    window.counter = 1;
-  }, 60000);
 
 
 	}
@@ -854,7 +860,7 @@ var app = {
         var tag = nfcEvent.tag;
 
         //console.log(JSON.stringify(nfcEvent.tag));
-        app.clearScreen();
+        //app.clearScreen();
 
         tagContents.innerHTML = app.tagTemplate(tag);
         navigator.notification.vibrate(100);
@@ -869,7 +875,7 @@ var app = {
     onNdef: function (nfcEvent) {
 
       //  console.log(JSON.stringify(nfcEvent.tag));
-        app.clearScreen();
+        //app.clearScreen();
 
         var tag = nfcEvent.tag;
 
