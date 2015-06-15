@@ -131,6 +131,10 @@ background: #1565c0;
 
 }
 
+#alarmview.knipperen {
+background: #FFFFFF;
+}
+
 .leesbaar {
 
 font-size: 23px;
@@ -263,15 +267,15 @@ display:none;
 
 .blauw {
 
-background:#1565c0;
-color:#ffffff;
+background:#1565c0 !important;
+color:#ffffff !important;
 border-radius:0px !important;
 
 }
 
 .blauwecolor {
 
-color:#1565c0;
+color:#1565c0 !important;
 	
 }
 
@@ -331,3 +335,15 @@ color:#333333 !important;
 color:#dadada;
 	
 }
+
+.timerplek {
+
+font-size:100px;
+text-align:center;
+width:100%;
+color:#ffffff;
+float:left;
+position:block;
+	
+}
+

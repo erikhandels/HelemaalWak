@@ -17,7 +17,7 @@
 
   <header class="top-bar row">
     <div class="col s12">
-      <p class="appnaam">Helemaalwak <a class="informatie" href="#"><i class="fa fa-info-circle"></i></a></p>
+      <p class="appnaam">Helemaalwak </p>
     </div>
   </header>
 
@@ -26,8 +26,6 @@
     <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2 active" href="#wekkerview">Wekker</a></li>
     <li class="tab"><a style="padding:6px 0 0 0" onclick="refreshview();" class="waves-effect btn-flat transparent blue-text text-darken-2" href="#statview">Statistieken</a></li>
   </ul>
-
-  
 
     <div id="wekkerview" class="col s12">
 
@@ -115,14 +113,18 @@
           <div class="hidden">
             <p class="uppercase center fase">Fase 1</p>
             <i style="font-size:100px;" class="shake mdi-action-alarm large blue-text text-lighten-5"></i>
+            <span class="timerplek center-align">60</span>
             <p class="alarmtekst center-align"><br><span class="alarmtijd"></span></p>
-            <a style="width:100%;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>
+            <a style="width:100%; color:#333333;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>
+
 
           </div>
         </div>
         <script id="non-ndef-template" type="text/x-handlebars-template">
-         <p class="uppercase center fase">Goedemorgen!</p>
-          <p class="alarmtijd center-align"></p>
+ <p class="uppercase center fase">niet ndef</p>
+
+
+
         </script>
         <script id="tag-template" type="text/x-handlebars-template">
 
@@ -133,7 +135,7 @@
 
           <p class="groterep">hoe voelt u zich?</p>
 
-          <div id="svgplek">
+
 
 		  <div class="row">
 
@@ -143,7 +145,7 @@
 
 		  </div>
 
-		  </div>
+
         </script>
       </div>
     </div>
@@ -195,7 +197,7 @@
   <header class="top-bar row">
 
   <div class="col s12">
-    <p class="appnaam">Contact kiezen <a class="informatie" href="#"><i class="fa fa-info-circle"></i></a></p>
+    <p class="appnaam">Contact kiezen</p>
     </div>
     </header>
 

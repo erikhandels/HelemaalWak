@@ -30,7 +30,6 @@ function showConfirm() {
 		}
     }
 
-
 function tijdopslaan(){
   localStorage.setItem('alarmtijd2', window.alarmtijd);
   instellenfase2();
@@ -75,10 +74,6 @@ window.fase2 = '0' + window.fase2;
 
 }
 
-else {
-
-}
-
 }
 
 function decimalenfase3() {
@@ -89,10 +84,6 @@ res2 = res2.replace(':', ''); // haal de dubbele punt weg als die bestaat
 if (res2.length < 2) {
 
 window.fase3 = '0' + window.fase3;
-
-}
-
-else {
 
 }
 
@@ -175,7 +166,26 @@ function kiesnieuwcontact() {
                $("#matig").html(data.matig);
                $("#slecht").html(data.slecht);
 
-               $("#best").html("Jij voelt je 's ochtends het beste na " + data.fasegoedvoel + " keer snoozen");
+               $("#best").html("Jij voelt je 's ochtends het beste na " + data.fasegoedvoel + " keer snoozen ");
+
+			   if (data.fasegoedvoel == 1) {
+
+				$("#best").append('(5 minuten)');
+
+			   }
+
+			   if (data.fasegoedvoel == 2) {
+
+			   $("#best").append('(10 minuten)');
+
+			   }
+
+			   if (data.fasegoedvoel == 3) {
+
+			   $("#best").append('(15 minuten)');
+
+			   }
+
              });
     }
 
@@ -264,255 +274,361 @@ function kiesnieuwcontact() {
 
   }
 
+	window.my_media_fase1 = null;
+	window.my_media_fase2 = null;
+	window.my_media_fase3 = null;
+	var telefoontijd;
+	var telefoontijduur;
+	var telefoontijdminuut;
+	window.x = document.getElementById("ingesteldetijd").value;
+	var date = new Date();
+	var uur = date.getHours();
+	var minuut = date.getMinutes();
+	window.counter = 1;
+	window.fase = 0;
+
+	//WEKKER CODE FASE 1 //
+	window.fase1_URL;
+	window.fase2_URL;
+	window.fase2_URL;
+
+
+	/*var my_media = null;
+	var mp3URL = getMediaURL("sounds/fase1.mp3");
+	var my_media = new Media(mp3URL, null, mediaError);*/
+
+	window.timer = null;
+	window.timer1 = null;
+	window.timer2 = null;
+
+	function flash() {
+	window.plugins.flashlight.toggle();
+	}
+
+	function vibratie() {
+	window.navigator.vibrate([200, 100, 200]);
+	}
+
+	function stopmp3() {
+	  window.my_media_fase1.stop();
+	  window.my_media_fase2.stop();
+	  window.my_media_fase3.stop();
+	//console.log('STOP WEKKER');
+	}
+
+	//EINDE WEKKER CODE FASE 1 //
+
+	function vibratieuit() {
+	window.navigator.vibrate([0, 0, 0]);
+	}
+
+	function flashuit() {
+	window.plugins.flashlight.switchOff();
+	}
+
+	function wekkeraanfase1() {
+
+	window.fase = 1;
+	minuuttimerfase1();
+	wekkeraan();
+	$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x +"</span></p>");
+	console.log('Fase 1 gaat af');
+	$('#wekkertoggle').hide();
+	$('.vervangen').replaceWith('<div style="font-size:60px;" class="col s7 terugzetten"><span id="ingesteldetijd">' + window.x +'</span></div>');
+	window.dbfase = window.fase;
+
+
+	}
+
+	function wekkeraanfase2() {
+
+	window.fase = 2;
+	minuuttimerfase2();
+	wekkeraan();
+	$('.fase').replaceWith('<p class="uppercase center fase">Fase 2</p>');
+	$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x2 +"</span></p>");
+	$('#snoozeknopfase1').replaceWith('<a style="width:100%; color:#333333;" id="snoozeknopfase2" onclick="snooze2();" class="btn-large blue lighten-5">SNOOZE</a>');
+	console.log('Fase 2 gaat af');
+	window.dbfase = window.fase;
+
+
+
+	}
+
+	function wekkeraanfase3() {
+
+	window.fase = 3;
+	knipperen();
+	minuuttimerfase3();
+	wekkeraan();
+	$('.fase').replaceWith('<p class="uppercase center fase">Fase 3</p>');
+	$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x3 +"</span></p>");
+	$('#snoozeknopfase2').replaceWith('<a style="width:100%; color:#333333;" id="snoozeknopfase3" onclick="snooze3();" class="btn-large blue lighten-5">OPGEVEN</a>');
+	console.log('Fase 3 gaat af');
+	window.dbfase = window.fase;
+
+
+
+	}
+
+	function snooze() {
+
+	window.counter = window.counter +2;
+	clearInterval(window.timer);
+	flashuit();
+	clearInterval(window.timer2);
+	vibratieuit();
+	stopmp3();
+	$("#alarmview").hide();
+	console.log('fase 1 is gesnoozed');
+	$('.wekkernaamplaats').css({"color": "#dadada"});
+	$('#ingesteldetijd').css({"color": "#dadada"});
+	$('.wekkernaamplaats2').css({"color": "#333333"});
+	$('#ingesteldetijd2').css({"color": "#333333"});
+	Materialize.toast('Wekker gesnoozed', 2000);
+
+	}
+
+	function snooze2() {
+
+	window.counter = window.counter +3;
+	clearInterval(window.timer);
+	flashuit();
+	clearInterval(window.timer2);
+	vibratieuit();
+	stopmp3();
+	$("#alarmview").hide();
+	console.log('fase 2 is gesnoozed');
+	$('.wekkernaamplaats2').css({"color": "#dadada"});
+	$('#ingesteldetijd2').css({"color": "#dadada"});
+	$('.wekkernaamplaats3').css({"color": "#333333"});
+	$('#ingesteldetijd3').css({"color": "#333333"});
+	Materialize.toast('Wekker gesnoozed', 2000);
+	}
+
+	function snooze3() {
+
+	window.counter = 0;
+	clearInterval(window.timer);
+	flashuit();
+	clearInterval(window.timer2);
+	vibratieuit();
+	stopmp3();
+	$("#alarmview").hide();
+
+	var messageInfo = {
+		phoneNumber: window.telefoonnummer,
+		textMessage: "Ik ben lui. Na 3 keer snoozen ben ik nog steeds niet mijn bed uitgekomen.."
+	};
+
+	sms.sendMessage(messageInfo, function(message) {
+		console.log("success: " + message);
+	}, function(error) {
+		console.log("code: " + error.code + ", message: " + error.message);
+	});
+
+	console.log('gefaald!');
+
+	window.my_media_faal.play();
+	$('#wekkertoggle').show();
+	$('.terugzetten').replaceWith('<div style="font-size:60px;"  class="col s7 vervangen" onclick="wekkerinstellen();"><span id="ingesteldetijd">' + window.x +'</span></div>');
+	$('.wekkernaamplaats3').css({"color": "#dadada"});
+	$('#ingesteldetijd3').css({"color": "#dadada"});
+	$('.wekkernaamplaats').css({"color": "#333333"});
+	$('#ingesteldetijd').css({"color": "#333333"});
+	$('.fase').replaceWith('<p class="uppercase center fase">Fase 1</p>');
+	$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x +"</span></p>");
+	$('#snoozeknopfase3').replaceWith(' <a style="width:100%; color:#333333;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>');
+	Materialize.toast('U heeft gefaald..', 2000);
+	window.counter = 1;
+	window.falen = localStorage.getItem('falen');
+	window.falen++;
+	localStorage.setItem('falen', window.falen);
+	refreshview();
+
+
+
+	}
+
+		function minuuttimerfase1() {
+
+		window.timercounter1 = 60;
+		window.timerinterval1 = setInterval(function() {
+		window.timercounter1--;
+		$('.timerplek').text(window.timercounter1);
+		if (window.timercounter1 == 0) {
+			clearInterval(window.timerinterval1);
+			clearInterval(window.knipperinterval1);
+			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
+			snooze();
+			}
 
+		}, 1000);
 
-window.my_media_fase1 = null;
-window.my_media_fase2 = null;
-window.my_media_fase3 = null;
-var telefoontijd;
-var telefoontijduur;
-var telefoontijdminuut;
-window.x = document.getElementById("ingesteldetijd").value;
-var date = new Date();
-var uur = date.getHours();
-var minuut = date.getMinutes();
-window.counter = 1;
-var fase = 0;
 
-//WEKKER CODE FASE 1 //
-window.fase1_URL;
-window.fase2_URL;
-window.fase2_URL;
-
-
-/*var my_media = null;
-var mp3URL = getMediaURL("sounds/fase1.mp3");
-var my_media = new Media(mp3URL, null, mediaError);*/
-
-window.timer = null;
-window.timer1 = null;
-window.timer2 = null;
-
-function flash() {
-window.plugins.flashlight.toggle();
-}
-
-function vibratie() {
-window.navigator.vibrate([200, 100, 200]);
-}
-
-function stopmp3() {
-  window.my_media_fase1.stop();
-  window.my_media_fase2.stop();
-  window.my_media_fase3.stop();
-//console.log('STOP WEKKER');
-}
-
-//EINDE WEKKER CODE FASE 1 //
-
-function vibratieuit() {
-window.navigator.vibrate([0, 0, 0]);
-}
-
-function flashuit() {
-window.plugins.flashlight.switchOff();
-}
-
-function wekkeraanfase1() {
-
-fase = 1;
-wekkeraan();
-$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x +"</span></p>");
-console.log('Fase 1 gaat af');
-$('#wekkertoggle').hide();
-$('.vervangen').replaceWith('<div style="font-size:60px;" class="col s7 terugzetten"><span id="ingesteldetijd">' + window.x +'</span></div>');
-window.dbfase = fase;
-
-}
-
-function wekkeraanfase2() {
-
-fase = 2;
-wekkeraan();
-$('.fase').replaceWith('<p class="uppercase center fase">Fase 2</p>');
-$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x2 +"</span></p>");
-$('#snoozeknopfase1').replaceWith('<a style="width:100%;" id="snoozeknopfase2" onclick="snooze2();" class="btn-large blue lighten-5">SNOOZE</a>');
-console.log('Fase 2 gaat af');
-window.dbfase = fase;
-
-
-}
-
-function wekkeraanfase3() {
-
-fase = 3;
-wekkeraan();
-$('.fase').replaceWith('<p class="uppercase center fase">Fase 3</p>');
-$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x3 +"</span></p>");
-$('#snoozeknopfase2').replaceWith('<a style="width:100%;" id="snoozeknopfase3" onclick="snooze3();" class="btn-large blue lighten-5">FALEN</a>');
-console.log('Fase 3 gaat af');
-window.dbfase = fase;
-
-
-}
-
-
-function snooze() {
-
-window.counter = window.counter +2;
-clearInterval(window.timer);
-flashuit();
-clearInterval(window.timer2);
-vibratieuit();
-stopmp3();
-$("#alarmview").hide();
-console.log('fase 1 is gesnoozed');
-$('.wekkernaamplaats').css({"color": "#dadada"});
-$('#ingesteldetijd').css({"color": "#dadada"});
-$('.wekkernaamplaats2').css({"color": "#333333"});
-$('#ingesteldetijd2').css({"color": "#333333"});
-Materialize.toast('Wekker gesnoozed', 2000);
-
-}
-
-function snooze2() {
+	}
 
-window.counter = window.counter +3;
-clearInterval(window.timer);
-flashuit();
-clearInterval(window.timer2);
-vibratieuit();
-stopmp3();
-$("#alarmview").hide();
-console.log('fase 2 is gesnoozed');
-$('.wekkernaamplaats2').css({"color": "#dadada"});
-$('#ingesteldetijd2').css({"color": "#dadada"});
-$('.wekkernaamplaats3').css({"color": "#333333"});
-$('#ingesteldetijd3').css({"color": "#333333"});
-Materialize.toast('Wekker gesnoozed', 2000);
-}
+		function minuuttimerfase2() {
 
-function snooze3() {
-
-window.counter = 0;
-clearInterval(window.timer);
-flashuit();
-clearInterval(window.timer2);
-vibratieuit();
-stopmp3();
-$("#alarmview").hide();
+		window.timercounter2 = 60;
+		window.timerinterval2 = setInterval(function() {
+		window.timercounter2--;
+		$('.timerplek').text(window.timercounter2);
+		if (window.timercounter2 == 0) {
+			clearInterval(window.timerinterval2);
+			clearInterval(window.knipperinterval2);
+			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
+			snooze2();
+			}
 
-var messageInfo = {
-    phoneNumber: window.telefoonnummer,
-    textMessage: "Ik ben lui. Na 3 keer snoozen ben ik nog steeds niet mijn bed uitgekomen.."
-};
+		}, 1000);
 
-sms.sendMessage(messageInfo, function(message) {
-    console.log("success: " + message);
-}, function(error) {
-    console.log("code: " + error.code + ", message: " + error.message);
-});
 
-console.log('gefaald!');
+	}
 
-$('#wekkertoggle').show();
-$('.terugzetten').replaceWith('<div style="font-size:60px;"  class="col s7 vervangen" onclick="wekkerinstellen();"><span id="ingesteldetijd">' + window.x +'</span></div>');
-$('.wekkernaamplaats3').css({"color": "#dadada"});
-$('#ingesteldetijd3').css({"color": "#dadada"});
-$('.wekkernaamplaats').css({"color": "#333333"});
-$('#ingesteldetijd').css({"color": "#333333"});
-$('.fase').replaceWith('<p class="uppercase center fase">Fase 1</p>');
-$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x +"</span></p>");
-$('#snoozeknopfase2').replaceWith('<a style="width:100%;" id="snoozeknopfase" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>');
-Materialize.toast('U heeft gefaald..', 2000);
+	function minuuttimerfase3() {
 
-window.falen = localStorage.getItem('falen');
-window.falen++;
-localStorage.setItem('falen', window.falen);
+		window.timercounter3 = 60;
+		window.timerinterval3 = setInterval(function() {
+		window.timercounter3 --;
+		$('.timerplek').text(window.timercounter3);
+		if (window.timercounter3 == 0) {
+			clearInterval(window.timerinterval3);
+			clearInterval(window.knipperinterval3);
+			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
+			snooze3();
+			}
 
-refreshview();
+		}, 1000);
 
 
+	}
 
-}
+	function knipperen() {
 
-function mediaError(e) {
-//console.log("MEDIA ERROR");
-}
+	window.knipperinterval = setInterval(function() {
+		$('#alarmview').toggleClass('knipperen');
+		$('i.mdi-action-alarm').toggleClass('blauwecolor');
+		$('.timerplek').toggleClass('blauwecolor');
+		$('.fase').toggleClass('blauwecolor');
+		$('.alarmtekst').toggleClass('blauwecolor');
+		$('.alarmtijd').toggleClass('blauwecolor');
+		$('#snoozeknopfase3').toggleClass('blauw');
 
-// wekker aan
-function wekkeraan(){
-//console.log("wekker aan gestart");
+		}, 500);
 
-//if(document.getElementById('togglewekker').checked) {
-//console.log("if checked gestart");
-window.counter = 0;
 
-$('#alarmview').show('fast');
+	}
 
-flash();
+	function mediaError(e) {
+	//console.log("MEDIA ERROR");
+	}
 
-window.timer = setInterval(function() {
-flash()}, 750);
+	// wekker aan
+	function wekkeraan(){
+	//console.log("wekker aan gestart");
 
-vibratie();
+	//if(document.getElementById('togglewekker').checked) {
+	//console.log("if checked gestart");
+	window.counter = 0;
 
-window.timer2 = setInterval(function() {
-vibratie()}, 1000);
+	$('#alarmview').show('fast');
 
-//console.log("fase bij wekkeraan() is" + fase);
+	//console.log("fase bij wekkeraan() is" + fase);
 
-if (fase == 1) {
-play_fase1_mp3();
-}
+	if (window.fase == 1) {
+	play_fase1_mp3();
+	}
 
-if (fase == 2) {
-play_fase2_mp3();
-}
+	if (window.fase == 2) {
 
-if (fase == 3) {
-play_fase3_mp3();
-}
+	flash();
 
-fase = 0;
+	window.timer = setInterval(function() {flash()}, 750);
 
-}
+	vibratie();
 
-//}
+	window.timer2 = setInterval(function() {vibratie()}, 1000);
 
-function play_fase1_mp3() {
-  window.my_media_fase1.play();
-//console.log("fase 1 speelt af");
+	play_fase2_mp3();
+	}
 
-}
-function play_fase2_mp3() {
-  window.my_media_fase2.play();
-//console.log("fase 2 speelt af");
-}
+	if (window.fase == 3) {
 
-function play_fase3_mp3() {
-  window.my_media_fase3.play();
-//console.log("fase 3 speelt af");
-}
+	flash();
 
-//wekker uit
+	window.timer = setInterval(function() {flash()}, 750);
 
-function wekkeruit(){
+	vibratie();
 
-/*$("#togglewekker").prop('checked', false);*/
+	window.timer2 = setInterval(function() {vibratie()}, 1000);
 
-clearInterval(window.timer);
+	play_fase3_mp3();
 
-flashuit();
+	}
 
-clearInterval(window.timer2);
+	window.fase = 0;
 
-vibratieuit();
+	}
 
-window.counter = 0;
+	//}
 
-stopmp3();
-}
+	function play_fase1_mp3() {
+	  window.my_media_fase1.play();
+	//console.log("fase 1 speelt af");
+
+	}
+	function play_fase2_mp3() {
+	  window.my_media_fase2.play();
+	//console.log("fase 2 speelt af");
+	}
+
+	function play_fase3_mp3() {
+	  window.my_media_fase3.play();
+	//console.log("fase 3 speelt af");
+	}
+
+	//wekker uit
+
+	function wekkeruit(){
+
+	/*$("#togglewekker").prop('checked', false);*/
+
+	clearInterval(window.timer);
+
+	flashuit();
+
+	clearInterval(window.timer2);
+
+	vibratieuit();
+
+
+	stopmp3();
+
+	window.my_media_win.play();
+	clearInterval(window.timerinterval1);
+	clearInterval(window.knipperinterval1);
+	clearInterval(window.timerinterval2);
+	clearInterval(window.knipperinterval2);
+	clearInterval(window.timerinterval3);
+	clearInterval(window.knipperinterval3);
+	$('#wekkertoggle').show();
+	$('.terugzetten').replaceWith('<div style="font-size:60px;"  class="col s7 vervangen" onclick="wekkerinstellen();"><span id="ingesteldetijd">' + window.x +'</span></div>');
+	$('.wekkernaamplaats3').css({"color": "#dadada"});
+	$('#ingesteldetijd3').css({"color": "#dadada"});
+	$('.wekkernaamplaats').css({"color": "#333333"});
+	$('#ingesteldetijd').css({"color": "#333333"});
+	$('.fase').replaceWith('<p class="uppercase center fase">Fase 1</p>');
+	$('.alarmtekst').replaceWith('<p class="alarmtekst center-align">Het is nu<br><span class="alarmtijd">' + window.x +"</span></p>");
+	$('#snoozeknopfase3').replaceWith(' <a style="width:100%; color:#333333;" id="snoozeknopfase1" onclick="snooze();" class="btn-large blue lighten-5">SNOOZE</a>');
+	window.counter = 0;
+
+  setTimeout(function () {
+    window.counter = 1;
+  }, 60000);
+
+
+	}
 
 function wekkerafgaan() {
 
@@ -681,6 +797,16 @@ var app = {
       window.fase3_URL = getMediaURL("sounds/fase3.mp3");
       window.my_media_fase3 = new Media(fase3_URL, null, mediaError);
 
+	 //FAAL SOUND //
+
+      window.faal_URL = getMediaURL("sounds/faal.wav");
+      window.my_media_faal = new Media(faal_URL, null, mediaError);
+
+
+	 //WIN SOUND //
+
+      window.win_URL = getMediaURL("sounds/goedzo.wav");
+      window.my_media_win = new Media(win_URL, null, mediaError);
 
         function failure(reason) {
             navigator.notification.alert(reason, function() {}, "There was a problem");
@@ -730,8 +856,12 @@ var app = {
         //console.log(JSON.stringify(nfcEvent.tag));
         app.clearScreen();
 
-        tagContents.innerHTML = app.nonNdefTagTemplate(tag);
+        tagContents.innerHTML = app.tagTemplate(tag);
         navigator.notification.vibrate(100);
+		wekkeruit();
+		Materialize.toast('Wekker uitgeschakeld', 2000);
+		window.my_media_win.play();
+
 
 
 
@@ -755,8 +885,7 @@ var app = {
         navigator.notification.vibrate(100);
 		wekkeruit();
 		Materialize.toast('Wekker uitgeschakeld', 2000);
-
-
+		window.my_media_win.play();
 
     },
     clearScreen: function () {
