@@ -135,5 +135,21 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.cordova.plugin.localNotificationPlugin": {
+        "source": {
+            "type": "registry",
+            "id": "com.cordova.plugin.localnotificationplugin"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.lampa.startapp": {
+        "source": {
+            "type": "registry",
+            "id": "com.lampa.startapp"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

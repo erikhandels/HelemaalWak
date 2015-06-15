@@ -296,6 +296,20 @@ module.exports = [
         "clobbers": [
             "window.StatusBar"
         ]
+    },
+    {
+        "file": "plugins/com.cordova.plugin.localNotificationPlugin/www/phonegap/plugin/localNotification/localNotification.js",
+        "id": "com.cordova.plugin.localNotificationPlugin.localNotificationPlugin",
+        "clobbers": [
+            "window.localNotification"
+        ]
+    },
+    {
+        "file": "plugins/com.lampa.startapp/www/startApp.js",
+        "id": "com.lampa.startapp.startapp",
+        "merges": [
+            "navigator.startApp"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -314,7 +328,9 @@ module.exports.metadata =
     "org.apache.cordova.dialogs": "0.3.0",
     "org.apache.cordova.file": "1.3.3",
     "org.apache.cordova.media": "0.2.16",
-    "cordova-plugin-statusbar": "1.0.0"
+    "cordova-plugin-statusbar": "1.0.0",
+    "com.cordova.plugin.localNotificationPlugin": "2.1.1",
+    "com.lampa.startapp": "0.0.5"
 }
 // BOTTOM OF METADATA
 });

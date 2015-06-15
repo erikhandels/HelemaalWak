@@ -6,6 +6,73 @@ function wekkerinstellen(){
   $("#wekkerinstelview").show(0);
 }
 
+function notificatiefase1() {
+
+localNotification.add(1,  {
+    seconds: 0,
+	title: "Fase 1",
+    message: "Goedemorgen, het is tijd om op te staan.",
+    badge: 1
+	
+	});
+	
+}
+
+function notificatiefase2() {
+
+localNotification.add(2,  {
+    seconds: 0,
+	title: "Fase 2",
+    message: "Moet je niet eens opstaan?",
+    badge: 2
+	
+	});
+	
+}
+
+function notificatiefase3() {
+
+localNotification.add(3,  {
+    seconds: 0,
+	title: "Fase 3",
+    message: "Dit is je laatste kans om op te staan..",
+    badge: 3
+	
+	});
+	
+}
+
+function telaat() {
+
+localNotification.add(4,  {
+    seconds: 0,
+	title: "Faal",
+    message: "Je wake-up buddy is op de hoogte gesteld van je faalactie..",
+    badge:4
+	
+	});
+	
+}
+
+ function onReceivedLocalNotification(event) {
+/*	console.log('er is een notificatie verschenen!');*/
+	navigator.startApp.start("com.phonegap.helemaalwakv24", function(message) { /* success */
+/*    console.log(message); // => OK
+*/}, 
+function(error) { /* error */
+    console.log(error);
+});
+    }
+	
+	var successCb = function () {
+        // Generic callback function
+        console.log("success");
+    }
+    var failureCb = function (error) {
+        // Generic callback function
+        console.log("failure");
+    }
+
 function showConfirm() {
       navigator.notification.confirm(
             'Weet u zeker dat u HelemaalWak wilt verlaten?', // message
@@ -328,6 +395,7 @@ function kiesnieuwcontact() {
 
 	function wekkeraanfase1() {
 
+	notificatiefase1();
 	window.fase = 1;
 	minuuttimerfase1();
 	wekkeraan();
@@ -338,10 +406,12 @@ function kiesnieuwcontact() {
 	window.dbfase = window.fase;
 
 
+
 	}
 
 	function wekkeraanfase2() {
 
+	notificatiefase2();
 	window.fase = 2;
 	minuuttimerfase2();
 	wekkeraan();
@@ -353,10 +423,13 @@ function kiesnieuwcontact() {
 
 
 
+
+
 	}
 
 	function wekkeraanfase3() {
 
+	notificatiefase3();
 	window.fase = 3;
 	knipperen();
 	minuuttimerfase3();
@@ -366,6 +439,8 @@ function kiesnieuwcontact() {
 	$('#snoozeknopfase2').replaceWith('<a style="width:100%; color:#333333;" id="snoozeknopfase3" onclick="snooze3();" class="btn-large blue lighten-5">OPGEVEN</a>');
 	console.log('Fase 3 gaat af');
 	window.dbfase = window.fase;
+
+
 
 
 
@@ -441,6 +516,7 @@ function kiesnieuwcontact() {
 
 	console.log('gefaald!');
 
+	telaat();
 	window.my_media_faal.play();
 	$('#wekkertoggle').show();
 	$('.terugzetten').replaceWith('<div style="font-size:60px;"  class="col s7 vervangen" onclick="wekkerinstellen();"><span id="ingesteldetijd">' + window.x +'</span></div>');
@@ -763,10 +839,14 @@ var app = {
     },
     bind: function () {
         document.addEventListener('deviceready', this.deviceready, false);
+		document.addEventListener("receivedLocalNotification", onReceivedLocalNotification, false);
     },
-
+	
+	
 
     deviceready: function () {
+	
+		
       $(".contacten").html('<div class="row center-align"><div style="margin-top:50px;" class="preloader-wrapper center-align big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');
 
 
