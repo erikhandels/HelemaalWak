@@ -540,14 +540,14 @@ function kiesnieuwcontact() {
 
 		function minuuttimerfase1() {
 
-		window.timercounter1 = 60;
+		window.timercounter1 = 30;
 		window.timerinterval1 = setInterval(function() {
 		window.timercounter1--;
 		$('.timerplek').text(window.timercounter1);
 		if (window.timercounter1 == 0) {
 			clearInterval(window.timerinterval1);
 			clearInterval(window.knipperinterval1);
-			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
+			$('.timerplek').replaceWith('<span class="timerplek">30</span>');
 			snooze();
 			}
 
@@ -558,14 +558,14 @@ function kiesnieuwcontact() {
 
 		function minuuttimerfase2() {
 
-		window.timercounter2 = 60;
+		window.timercounter2 = 30;
 		window.timerinterval2 = setInterval(function() {
 		window.timercounter2--;
 		$('.timerplek').text(window.timercounter2);
 		if (window.timercounter2 == 0) {
 			clearInterval(window.timerinterval2);
 			clearInterval(window.knipperinterval2);
-			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
+			$('.timerplek').replaceWith('<span class="timerplek">30</span>');
 			snooze2();
 			}
 
@@ -576,14 +576,14 @@ function kiesnieuwcontact() {
 
 	function minuuttimerfase3() {
 
-		window.timercounter3 = 60;
+		window.timercounter3 = 30;
 		window.timerinterval3 = setInterval(function() {
 		window.timercounter3 --;
 		$('.timerplek').text(window.timercounter3);
 		if (window.timercounter3 == 0) {
 			clearInterval(window.timerinterval3);
 			clearInterval(window.knipperinterval);
-			$('.timerplek').replaceWith('<span class="timerplek">60</span>');
+			$('.timerplek').replaceWith('<span class="timerplek">30</span>');
 			snooze3();
 			}
 
