@@ -25,10 +25,11 @@ HelemaalWak is een wekkerapp die gericht is op mensen die moeite hebben met opst
 - Local storage
 - Contacts
 - SMS
-
-###Coming soon:
-
 - Local notifications
+
+## Back-end
+
+Alle door de gebruiker gegenereerde data wordt verstuurd en opgehaald door middel van een mysql database die met een JSON call wordt aangeroepen. De berekeningen met betrekking tot deze data worden op de server gedaan en vormen samen een persoonlijk advies binnen de statistiekenview.
 
 ## Credits
 
