@@ -24,10 +24,10 @@ HelemaalWak is een wekkerapp die gericht is op mensen die moeite hebben met opst
 - NFC read
 - Local storage
 - Contacts
+- SMS
 
 ###Coming soon:
 
-- SMS
 - Local notifications
 
 ## Credits
